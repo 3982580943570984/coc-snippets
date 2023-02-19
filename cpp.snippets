@@ -1,0 +1,9 @@
+snippet dfs "depth-first search"
+void dfs (int s) {
+	if (!visited[s]) {
+		visited[s] = true;
+		for (const auto& u : adj[s])
+			dfs(u);
+	}
+}
+endsnippet
