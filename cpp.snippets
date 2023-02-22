@@ -1,3 +1,42 @@
+snippet init "" b
+#include <ios>
+#include <iostream>
+
+#define int long long
+using namespace std;
+
+int32_t main() {
+	ios::sync_with_stdio(false); cin.tie(nullptr);
+
+
+
+	return 0;
+}
+endsnippet
+
+snippet fenwick "binary indexed tree" bfs
+struct fenwick{
+	vector<int> bit;
+
+	fenwick(int n): bit(n+1, 0) {};
+	fenwick(vector<int> a): fenwick(a.size()) {
+		for (int i = 0; i < bit.size(); ++i)
+			update(i, a[i]);
+	};
+
+	int operation (int index) {
+		int result = 0;
+		for(++index; index > 0; index -= index & -index)
+			result += bit[index];
+		return result;
+	};
+	void update(int index, int delta) {
+		for(++index; index < bit.size(); index += index & -index)
+			bit[index] += delta;
+	};
+};
+endsnippet 
+
 snippet dfs "depth-first search" b
 void dfs (int s) {
 	if (!visited[s]) {
