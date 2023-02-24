@@ -23,11 +23,10 @@ snippet segment "statistic tree" b
 constexpr int N = 1e5 + 5;
 /* Array size current */
 int n;
+/* Tree */
+int t[2 * N];
 
 struct segment {
-  /* Tree */
-  int t[2 * N];
-
   void build() {
     for (size_t i = n - 1; i > 0; --i)
       /* Node value equals to sum of left and right child */
@@ -40,6 +39,7 @@ struct segment {
       t[p >> 1] = t[p] + t[p ^ 1];
   }
 
+  /* [l, r) */
   int query(int l, int r) {
     int res = 0;
     for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
