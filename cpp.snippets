@@ -1,12 +1,12 @@
 snippet init "" b
 #include <ios>
 #include <iostream>
+#include <vector>
 
 #define int long long
-using namespace std;
 
 int32_t main() {
-	ios::sync_with_stdio(false); cin.tie(nullptr);
+	std::ios::sync_with_stdio(false); std::cin.tie(nullptr);
 
 
 
@@ -14,23 +14,64 @@ int32_t main() {
 }
 endsnippet
 
+snippet segment "statistic tree" b
+/**
+ * 1. Indices of leaves starts from n
+ * */
+
+/* Array size limit */
+constexpr int N = 1e5 + 5;
+/* Array size current */
+int n;
+
+struct segment {
+  /* Tree */
+  int t[2 * N];
+
+  void build() {
+    for (size_t i = n - 1; i > 0; --i)
+      /* Node value equals to sum of left and right child */
+      t[i] = t[i << 1] + t[i << 1 | 1];
+  }
+
+  void modify(int p, int v) {
+    for (t[p += n] = v; p > 1; p >>= 1)
+      /* Node value equals to sum of his childs */
+      t[p >> 1] = t[p] + t[p ^ 1];
+  }
+
+  int query(int l, int r) {
+    int res = 0;
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+      /* If left node not fully included */
+      if (l & 1)
+        res += t[l++];
+      /* If right node fully included */
+      if (r & 1)
+        res += t[--r];
+    }
+    return res;
+  }
+};
+endsnippet
+
 snippet fenwick "binary indexed tree" b
 struct fenwick{
-	vector<int> bit;
+	std::vector<int> bit;
 
 	fenwick(int n): bit(n+1, 0) {};
-	fenwick(vector<int> a): fenwick(a.size()) {
-		for (int i = 0; i < bit.size(); ++i)
+	fenwick(std::vector<int> a): fenwick(a.size()) {
+		for (size_t i = 0; i < bit.size(); ++i)
 			update(i, a[i]);
 	};
 
-	int operation (int index) {
+	int operation (size_t index) {
 		int result = 0;
 		for(++index; index > 0; index -= index & -index)
 			result += bit[index];
 		return result;
 	};
-	void update(int index, int delta) {
+	void update(size_t index, int delta) {
 		for(++index; index < bit.size(); index += index & -index)
 			bit[index] += delta;
 	};
