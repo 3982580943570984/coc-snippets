@@ -1,16 +1,17 @@
 snippet init "" b
-#include <ios>
 #include <iostream>
 #include <vector>
 
-#define int long long
+typedef float f32;
+typedef double f64;
+typedef int32_t i32;
+typedef int64_t i64;
 
-int32_t main() {
-	std::ios::sync_with_stdio(false); std::cin.tie(nullptr);
+i32 main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
 
-
-
-	return 0;
+  return 0;
 }
 endsnippet
 
