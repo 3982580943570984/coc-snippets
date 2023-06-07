@@ -11,6 +11,11 @@ typedef int64_t i64;
 using namespace std;
 
 i32 main() {
+  #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+  #endif
+
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
 
