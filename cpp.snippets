@@ -11,13 +11,12 @@ typedef int64_t i64;
 using namespace std;
 
 i32 main() {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
   #endif
-
-  std::ios::sync_with_stdio(false);
-  std::cin.tie(nullptr);
 
   return 0;
 }
@@ -89,11 +88,11 @@ endsnippet
 
 snippet dfs "depth-first search" b
 void dfs (int s) {
-	if (!visited[s]) {
-		visited[s] = true;
-		for (const auto& u : adj[s])
-			dfs(u);
-	}
+  if (visited[s]) return;
+
+  visited[s] = true;
+    for (const auto& u : adj[s])
+	  dfs(u);
 }
 endsnippet
 
