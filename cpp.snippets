@@ -87,6 +87,7 @@ struct fenwick{
 endsnippet 
 
 snippet dfs "depth-first search" b
+vector<bool> visited;
 void dfs (int s) {
   if (visited[s]) return;
 
