@@ -92,7 +92,17 @@ struct fenwick{
 			bit[index] += delta;
 	};
 };
-endsnippet 
+endsnippet
+
+snippet dxy4 "Description" b
+i32 dx[] = { 0, 0, 1, -1 };
+i32 dy[] = { -1, 1, 0, 0 };
+endsnippet
+
+snippet dxy8 "Description" b
+i32 dx[] = { 1, 1, 0, -1, -1, -1, 0, 1 };
+i32 dy[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
+endsnippet
 
 snippet dfs "depth-first search" b
 vector<bool> visited;
