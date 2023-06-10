@@ -12,17 +12,13 @@ snippet dsu "" b
 struct DSU {
   vector<i32> edges;
 
-  void initialize(i32 n) {
-    edges.assign(n, -1);
-  }
+  void initialize(i32 n) { edges.assign(n, -1); }
 
-  i32 find(i32 x) {
-    return edges[x] < 0 ? x : edges[x] = find(edges[x]);
-  }
+  i32 find(i32 x) { return edges[x] < 0 ? x : edges[x] = find(edges[x]); }
 
-  bool same(i32 a, i32 b) {
-    return find(a) == find(b);
-  }
+  bool same(i32 a, i32 b) { return find(a) == find(b); }
+
+  i32 size(i32 x) { return -edges[find(x)]; }
 
   bool unite(i32 a, i32 b) {
     a = find(a), b = find(b);
