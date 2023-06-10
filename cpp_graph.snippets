@@ -38,26 +38,22 @@ struct DSU {
 endsnippet
 
 snippet kruskal "mst" b
-vector<vector<i32>> adj;
 vector<tuple<i32, i32, i32>> edges;
 i32 cost = 0, taken = 0;
-void kruskal() {
-  // sort all edges by weight
+void kruskal(i32 amount_of_vertices) {
   sort(edges.begin(), edges.end());
 
-  // create disjoint set for each vertice
-  DSU dsu; dsu.initialize(adj.size());
+  DSU dsu;
+  dsu.initialize(amount_of_vertices);
 
-  for (auto& [w, u, v] : edges) {
-    if (dsu.same(u, v))
-      continue;
+  for (auto &[w, u, v] : edges) {
+    if (dsu.unite(u, v)) {
+      cost += w;
+      ++taken;
 
-    cost += w;
-    dsu.unite(u, v);
-    ++taken;
-
-    if (taken == adj.size() - 1)
-      break;
+      if (taken == amount_of_vertices - 1)
+        break;
+    }
   }
 }
 endsnippet
