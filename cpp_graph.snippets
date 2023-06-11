@@ -35,6 +35,7 @@ struct DSU {
 
     edges[a] += edges[b];
     edges[b] = a;
+	--number_of_sets;
 
     return true;
   }
