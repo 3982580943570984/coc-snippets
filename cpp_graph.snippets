@@ -143,3 +143,13 @@ void restore_path (int start, int end) {
 		restore.push_back(v);
 }
 endsnippet
+
+snippet floyd_warshall "all-source shortest path" b
+vector<vector<i64>> dist;
+void floyd_warshall() {
+  for (i32 k = 0; k < dist.size(); ++k)
+    for (i32 i = 0; i < dist.size(); ++i)
+      for (i32 j = 0; j < dist.size(); ++j)
+        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+}
+endsnippet
